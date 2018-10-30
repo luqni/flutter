@@ -1,0 +1,170 @@
+{{>head}}
+
+  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <h5>{{parent.name}} {{parent.kind}}</h5>
+    {{>sidebar_for_library}}
+  </div>
+
+  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
+    {{#self}}
+      <h1>{{{nameWithGenerics}}} {{kind}} {{>categorization}}</h1>
+    {{/self}}
+
+    {{#clazz}}
+    {{>documentation}}
+    {{/clazz}}
+
+    {{#clazz.hasModifiers}}
+    <section>
+      <dl class="dl-horizontal">
+        {{#clazz.hasPublicSuperChainReversed}}
+        <dt>Inheritance</dt>
+        <dd><ul class="gt-separated dark clazz-relationships">
+          <li>{{{linkedObjectType}}}</li>
+          {{#clazz.publicSuperChainReversed}}
+          <li>{{{linkedName}}}</li>
+          {{/clazz.publicSuperChainReversed}}
+          <li>{{{name}}}</li>
+        </ul></dd>
+        {{/clazz.hasPublicSuperChainReversed}}
+
+        {{#clazz.hasPublicInterfaces}}
+        <dt>Implements</dt>
+        <dd>
+          <ul class="comma-separated clazz-relationships">
+            {{#clazz.publicInterfaces}}
+            <li>{{{linkedName}}}</li>
+            {{/clazz.publicInterfaces}}
+          </ul>
+        </dd>
+        {{/clazz.hasPublicInterfaces}}
+
+        {{#clazz.hasPublicMixins}}
+        <dt>Mixes-in</dt>
+        <dd><ul class="comma-separated clazz-relationships">
+          {{#clazz.publicMixins}}
+          <li>{{{linkedName}}}</li>
+          {{/clazz.publicMixins}}
+        </ul></dd>
+        {{/clazz.hasPublicMixins}}
+
+        {{#clazz.hasPublicImplementors}}
+        <dt>Implemented by</dt>
+        <dd><ul class="comma-separated clazz-relationships">
+          {{#clazz.publicImplementors}}
+          <li>{{{linkedName}}}</li>
+          {{/clazz.publicImplementors}}
+        </ul></dd>
+        {{/clazz.hasPublicImplementors}}
+
+        {{#clazz.hasAnnotations}}
+        <dt>Annotations</dt>
+        <dd><ul class="annotation-list clazz-relationships">
+          {{#clazz.annotations}}
+          <li>{{{.}}}</li>
+          {{/clazz.annotations}}
+        </ul></dd>
+        {{/clazz.hasAnnotations}}
+      </dl>
+    </section>
+    {{/clazz.hasModifiers}}
+
+    {{#clazz.hasPublicConstructors}}
+    <section class="summary offset-anchor" id="constructors">
+      <h2>Constructors</h2>
+
+      <dl class="constructor-summary-list">
+        {{#clazz.publicConstructors}}
+        <dt id="{{htmlId}}" class="callable">
+          <span class="name">{{{linkedName}}}</span><span class="signature">({{{ linkedParams }}})</span>
+        </dt>
+        <dd>
+          {{{ oneLineDoc }}}
+          {{#isConst}}
+          <div class="constructor-modifier features">const</div>
+          {{/isConst}}
+          {{#isFactory}}
+          <div class="constructor-modifier features">factory</div>
+          {{/isFactory}}
+        </dd>
+        {{/clazz.publicConstructors}}
+      </dl>
+    </section>
+    {{/clazz.hasPublicConstructors}}
+
+    {{#clazz.hasPublicProperties}}
+    <section class="summary offset-anchor{{ #allPublicInstancePropertiesInherited }} inherited{{ /allPublicInstancePropertiesInherited }}" id="instance-properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        {{#clazz.allPublicInstanceProperties}}
+        {{>property}}
+        {{/clazz.allPublicInstanceProperties}}
+      </dl>
+    </section>
+    {{/clazz.hasPublicProperties}}
+
+    {{#clazz.hasPublicMethods}}
+    <section class="summary offset-anchor{{ #allPublicInstanceMethodsInherited }} inherited{{ /allPublicInstanceMethodsInherited }}" id="instance-methods">
+      <h2>Methods</h2>
+      <dl class="callables">
+        {{#clazz.allPublicInstanceMethods}}
+        {{>callable}}
+        {{/clazz.allPublicInstanceMethods}}
+      </dl>
+    </section>
+    {{/clazz.hasPublicMethods}}
+
+    {{#clazz.hasPublicOperators}}
+    <section class="summary offset-anchor{{ #allPublicOperatorsInherited }} inherited{{ /allPublicOperatorsInherited}}" id="operators">
+      <h2>Operators</h2>
+      <dl class="callables">
+        {{#clazz.allPublicOperators}}
+        {{>callable}}
+        {{/clazz.allPublicOperators}}
+      </dl>
+    </section>
+    {{/clazz.hasPublicOperators}}
+
+    {{#clazz.hasPublicStaticProperties}}
+    <section class="summary offset-anchor" id="static-properties">
+      <h2>Static Properties</h2>
+
+      <dl class="properties">
+        {{#clazz.publicStaticProperties}}
+        {{>property}}
+        {{/clazz.publicStaticProperties}}
+      </dl>
+    </section>
+    {{/clazz.hasPublicStaticProperties}}
+
+    {{#clazz.hasPublicStaticMethods}}
+    <section class="summary offset-anchor" id="static-methods">
+      <h2>Static Methods</h2>
+      <dl class="callables">
+        {{#clazz.publicStaticMethods}}
+        {{>callable}}
+        {{/clazz.publicStaticMethods}}
+      </dl>
+    </section>
+    {{/clazz.hasPublicStaticMethods}}
+
+    {{#clazz.hasPublicConstants}}
+    <section class="summary offset-anchor" id="constants">
+      <h2>Constants</h2>
+
+      <dl class="properties">
+        {{#clazz.publicConstants}}
+        {{>constant}}
+        {{/clazz.publicConstants}}
+      </dl>
+    </section>
+    {{/clazz.hasPublicConstants}}
+
+  </div> <!-- /.main-content -->
+
+  <div class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+    {{>sidebar_for_class}}
+  </div><!--/.sidebar-offcanvas-->
+
+{{>footer}}

@@ -1,0 +1,170 @@
+{{>head}}
+
+  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <h5>{{parent.name}} {{parent.kind}}</h5>
+    {{>sidebar_for_library}}
+  </div>
+
+  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
+    {{#self}}
+    <h1>{{{name}}} {{kind}} {{>categorization}}</h1>
+    {{/self}}
+
+    {{#eNum}}
+    {{>documentation}}
+    {{/eNum}}
+
+    {{#eNum.hasModifiers}}
+    <section>
+      <dl class="dl-horizontal">
+        {{#eNum.hasPublicSuperChainReversed}}
+        <dt>Inheritance</dt>
+        <dd><ul class="gt-separated dark eNum-relationships">
+          <li>{{{linkedObjectType}}}</li>
+          {{#eNum.publicSuperChainReversed}}
+          <li>{{{linkedName}}}</li>
+          {{/eNum.publicSuperChainReversed}}
+          <li>{{{name}}}</li>
+        </ul></dd>
+        {{/eNum.hasPublicSuperChainReversed}}
+
+        {{#eNum.hasPublicInterfaces}}
+        <dt>Implements</dt>
+        <dd>
+          <ul class="comma-separated eNum-relationships">
+            {{#eNum.publicInterfaces}}
+            <li>{{{linkedName}}}</li>
+            {{/eNum.publicInterfaces}}
+          </ul>
+        </dd>
+        {{/eNum.hasPublicInterfaces}}
+
+        {{#eNum.hasPublicMixins}}
+        <dt>Mixes-in</dt>
+        <dd><ul class="comma-separated eNum-relationships">
+          {{#eNum.publicMixins}}
+          <li>{{{linkedName}}}</li>
+          {{/eNum.publicMixins}}
+        </ul></dd>
+        {{/eNum.hasPublicMixins}}
+
+        {{#eNum.hasPublicImplementors}}
+        <dt>Implemented by</dt>
+        <dd><ul class="comma-separated eNum-relationships">
+          {{#eNum.publicImplementors}}
+          <li>{{{linkedName}}}</li>
+          {{/eNum.publicImplementors}}
+        </ul></dd>
+        {{/eNum.hasPublicImplementors}}
+
+        {{#eNum.hasAnnotations}}
+        <dt>Annotations</dt>
+        <dd><ul class="annotation-list eNum-relationships">
+          {{#eNum.annotations}}
+          <li>{{{.}}}</li>
+          {{/eNum.annotations}}
+        </ul></dd>
+        {{/eNum.hasAnnotations}}
+      </dl>
+    </section>
+    {{/eNum.hasModifiers}}
+
+    {{#eNum.hasPublicConstants}}
+    <section class="summary offset-anchor" id="constants">
+      <h2>Constants</h2>
+
+      <dl class="properties">
+        {{#eNum.publicConstants}}
+        {{>constant}}
+        {{/eNum.publicConstants}}
+      </dl>
+    </section>
+    {{/eNum.hasPublicConstants}}
+
+    {{#eNum.hasPublicConstructors}}
+    <section class="summary offset-anchor" id="constructors">
+      <h2>Constructors</h2>
+
+      <dl class="constructor-summary-list">
+        {{#eNum.publicConstructors}}
+        <dt id="{{htmlId}}" class="callable">
+          <span class="name">{{{linkedName}}}</span><span class="signature">({{{ linkedParams }}})</span>
+        </dt>
+        <dd>
+          {{{ oneLineDoc }}}
+          {{#isConst}}
+          <div class="constructor-modifier features">const</div>
+          {{/isConst}}
+          {{#isFactory}}
+          <div class="constructor-modifier features">factory</div>
+          {{/isFactory}}
+        </dd>
+        {{/eNum.publicConstructors}}
+      </dl>
+    </section>
+    {{/eNum.hasPublicConstructors}}
+
+    {{#eNum.hasPublicProperties}}
+    <section class="summary offset-anchor{{ #allPublicInstancePropertiesInherited }} inherited{{ /allPublicInstancePropertiesInherited }}" id="instance-properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        {{#eNum.allPublicInstanceProperties}}
+        {{>property}}
+        {{/eNum.allPublicInstanceProperties}}
+      </dl>
+    </section>
+    {{/eNum.hasPublicProperties}}
+
+    {{#eNum.hasPublicMethods}}
+    <section class="summary offset-anchor{{ #allPublicInstanceMethodsInherited }} inherited{{ /allPublicInstanceMethodsInherited }}" id="instance-methods">
+      <h2>Methods</h2>
+      <dl class="callables">
+        {{#eNum.allPublicInstanceMethods}}
+        {{>callable}}
+        {{/eNum.allPublicInstanceMethods}}
+      </dl>
+    </section>
+    {{/eNum.hasPublicMethods}}
+
+    {{#eNum.hasPublicOperators}}
+    <section class="summary offset-anchor{{ #allPublicOperatorsInherited }} inherited{{ /allPublicOperatorsInherited}}" id="operators">
+      <h2>Operators</h2>
+      <dl class="callables">
+        {{#eNum.allPublicOperators}}
+        {{>callable}}
+        {{/eNum.allPublicOperators}}
+      </dl>
+    </section>
+    {{/eNum.hasPublicOperators}}
+
+    {{#eNum.hasPublicStaticProperties}}
+    <section class="summary offset-anchor" id="static-properties">
+      <h2>Static Properties</h2>
+
+      <dl class="properties">
+        {{#eNum.publicStaticProperties}}
+        {{>property}}
+        {{/eNum.publicStaticProperties}}
+      </dl>
+    </section>
+    {{/eNum.hasPublicStaticProperties}}
+
+    {{#eNum.hasPublicStaticMethods}}
+    <section class="summary offset-anchor" id="static-methods">
+      <h2>Static Methods</h2>
+      <dl class="callables">
+        {{#eNum.publicStaticMethods}}
+        {{>callable}}
+        {{/eNum.publicStaticMethods}}
+      </dl>
+    </section>
+    {{/eNum.hasPublicStaticMethods}}
+
+  </div> <!-- /.main-content -->
+
+  <div class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+    {{>sidebar_for_enum}}
+  </div><!--/.sidebar-offcanvas-->
+
+{{>footer}}

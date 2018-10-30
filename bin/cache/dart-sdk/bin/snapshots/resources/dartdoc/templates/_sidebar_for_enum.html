@@ -1,0 +1,52 @@
+<ol>
+  {{#eNum.hasPublicConstants}}
+  <li class="section-title"><a href="{{eNum.href}}#constants">Constants</a></li>
+  {{#eNum.publicConstants}}
+  <li>{{{linkedName}}}</li>
+  {{/eNum.publicConstants}}
+  {{/eNum.hasPublicConstants}}
+
+  {{#eNum.hasPublicConstructors}}
+  <li class="section-title"><a href="{{eNum.href}}#constructors">Constructors</a></li>
+  {{#eNum.publicConstructors}}
+  <li><a{{#isDeprecated}} class="deprecated"{{/isDeprecated}} href="{{href}}">{{shortName}}</a></li>
+  {{/eNum.publicConstructors}}
+  {{/eNum.hasPublicConstructors}}
+
+  {{#eNum.hasPublicProperties}}
+  <li class="section-title{{ #allPublicInstancePropertiesInherited }} inherited{{ /allPublicInstancePropertiesInherited }}">
+    <a href="{{eNum.href}}#instance-properties">Properties</a>
+  </li>
+  {{#eNum.allPublicInstanceProperties}}
+  <li{{ #isInherited }} class="inherited"{{ /isInherited}}>{{{ linkedName }}}</li>
+  {{/eNum.allPublicInstanceProperties}}
+  {{/eNum.hasPublicProperties}}
+
+  {{#eNum.hasPublicMethods}}
+  <li class="section-title{{ #allPublicInstanceMethodsInherited }} inherited{{ /allPublicInstanceMethodsInherited }}"><a href="{{eNum.href}}#instance-methods">Methods</a></li>
+  {{#eNum.allPublicInstanceMethods}}
+  <li{{ #isInherited }} class="inherited"{{ /isInherited}}>{{{ linkedName }}}</li>
+  {{/eNum.allPublicInstanceMethods}}
+  {{/eNum.hasPublicMethods}}
+
+  {{#eNum.hasPublicOperators}}
+  <li class="section-title{{ #allPublicOperatorsInherited }} inherited{{ /allPublicOperatorsInherited}}"><a href="{{eNum.href}}#operators">Operators</a></li>
+  {{#eNum.allPublicOperators}}
+  <li{{ #isInherited }} class="inherited"{{ /isInherited}}>{{{ linkedName }}}</li>
+  {{/eNum.allPublicOperators}}
+  {{/eNum.hasPublicOperators}}
+
+  {{#eNum.hasPublicStaticProperties}}
+  <li class="section-title"><a href="{{eNum.href}}#static-properties">Static properties</a></li>
+  {{#eNum.publicStaticProperties}}
+  <li>{{{ linkedName }}}</li>
+  {{/eNum.publicStaticProperties}}
+  {{/eNum.hasPublicStaticProperties}}
+
+  {{#eNum.hasPublicStaticMethods}}
+  <li class="section-title"><a href="{{eNum.href}}#static-methods">Static methods</a></li>
+  {{#eNum.publicStaticMethods}}
+  <li>{{{ linkedName }}}</li>
+  {{/eNum.publicStaticMethods}}
+  {{/eNum.hasPublicStaticMethods}}
+</ol>

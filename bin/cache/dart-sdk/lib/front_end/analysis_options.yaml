@@ -1,0 +1,24 @@
+# Copyright (c) 2017, the Dart project authors.  Please see the AUTHORS file
+# for details. All rights reserved. Use of this source code is governed by a
+# BSD-style license that can be found in the LICENSE file.
+
+analyzer:
+  language:
+    enableSuperMixins: false
+  exclude:
+    - testcases/**
+  errors:
+    # Omits warnings due to missing `@virtual`
+    # TODO(sigmund): enable once #28601 is fixed
+    strong_mode_invalid_field_override: ignore
+
+    # Allow having TODOs in the code
+    todo: ignore
+
+    # Allow deprecated calls (although it would be nice to have a distinction
+    # between internal and external deprecated calls).
+    deprecated_member_use: ignore
+
+    # TODO(jmesserly): this hint was not working in many cases (#31237).
+    # The hint is now fixed, but the new hints need investigation by CFE folks.
+    missing_return: ignore
